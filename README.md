@@ -43,9 +43,32 @@
 1. **创建BAT脚本**:
    - 在任意文本编辑器中输入以下内容,如果采用虚拟环境,请自行调整shell指令：
      ```bat
-     @echo off
-     cd "C:\path\to\your\script"  # 替换为脚本所在的目录
-     start python campus_network_login.py
+      @echo off
+      REM 设置控制台代码页为UTF-8，解决中文显示问题
+      chcp 65001 >nul
+      REM 切换到脚本目录
+      cd /d E:\Users\Administrator\PycharmProjects\xxx
+      
+      REM 检查并创建配置文件
+      if not exist "config.ini" (
+          echo ini配置不存在
+      )
+      
+      REM 设置权限
+      icacls "config.ini" /grant Everyone:R /Q
+      
+      REM 运行Python脚本
+      set PYTHONWARNINGS=ignore:SSL
+      D:\ProgramData\anaconda3\envs\xxx\python.exe -W ignore connect_school_network.py 2>nul
+      
+      if errorlevel 1 (
+          echo 运行失败，错误代码：%errorlevel%
+          echo 详细信息请查看日志文件
+          timeout /t 10
+          exit /b %errorlevel%
+      )
+      echo 运行成功
+      timeout /t 5
      ```
    - 将文件保存为`start_login.bat`（确保文件类型选择为“所有文件”）。
 
