@@ -239,6 +239,7 @@ class CampusNetworkConnector:
                 if "success" in self.driver.page_source.lower() or NetworkUtils.is_connected():
                     elapsed_time = time.time() - start_time
                     logging.info(f"网络连接成功，耗时 {elapsed_time:.2f} 秒")
+                    print("连接成功!")
                     return True
                 else:
                     logging.warning("连接状态未知，请手动确认")

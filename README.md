@@ -71,10 +71,20 @@
       timeout /t 5
      ```
    - 将文件保存为`start_login.bat`（确保文件类型选择为“所有文件”）。
-
+   2. **创建vbs脚本**:
+      - 在任意文本编辑器中输入以下内容:
+      ```vbs
+       Set WShell = CreateObject("WScript.Shell")
+       strPath = CreateObject("Scripting.FileSystemObject").GetParentFolderName(WScript.ScriptFullName)
+       WShell.Run "cmd /c """ & strPath & "\connect_school_network.bat""", 0, False
+       Set WShell = Nothing
+       ```
+      - 将文件保存为`start_login.vbs`（确保文件类型选择为“所有文件”,与bat脚本在同级目录）。
+      - 这个vbs脚本的作用是隐藏BAT脚本的运行窗口。
+   
 2. **将BAT脚本添加到启动文件夹**:
    - 按下 `Win + R` 键，输入 `shell:startup`，然后按回车。这将打开Windows的启动文件夹。
-   - 将刚刚创建的`start_login.bat`文件复制到此文件夹中。
+   - 将刚刚创建的`start_login.vbs`文件复制到此文件夹中。
 
 3. **测试开机自启动**:
    - 重启计算机，确认脚本是否在开机后自动运行。
