@@ -26,6 +26,7 @@
    pip install selenium webdriver_manager
    ```
 3. 下载与您的Chrome浏览器版本匹配的ChromeDriver
+   [chromedriver下载链接](https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)
 
 ## 使用说明
 
@@ -103,6 +104,7 @@
 - 请确保您的网络连接稳定
 - 定期更新ChromeDriver以匹配您的Chrome浏览器版本
 - 不要将包含敏感信息的配置文件分享给他人
+- ini文件为UTF-8的编码格式
 
 ## 常见问题
 
